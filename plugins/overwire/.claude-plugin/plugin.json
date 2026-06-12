@@ -1,0 +1,8 @@
+{
+  "name": "overwire",
+  "description": "Drive Overwire, the local workflow workbench: run, mock, and debug GitHub Actions workflow files locally through the CLI and plain config files.",
+  "version": "0.1.0",
+  "author": { "name": "Overwire" },
+  "homepage": "https://docs.overwire.io/automation/ai-agents/",
+  "license": "MIT"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "overwire",
+  "owner": {
+    "name": "Overwire"
+  },
+  "metadata": {
+    "description": "Agent skills for Overwire, the local workflow workbench.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "overwire",
+      "source": "./plugins/overwire",
+      "description": "Run, mock, and debug GitHub Actions workflow files locally with the Overwire CLI: scaffold scenarios, validate before running, parse structured run results, and simulate org controls.",
+      "author": { "name": "Overwire" },
+      "homepage": "https://docs.overwire.io/automation/ai-agents/",
+      "license": "MIT",
+      "keywords": ["workflows", "ci", "local-testing", "mocking"],
+      "category": "developer-tools"
+    }
+  ]
+}
