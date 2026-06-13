@@ -32,7 +32,7 @@ Exit codes: 0 success/correctly-skipped, 1 run failure, 2 parse/config/validatio
 ## Rules that prevent rework
 
 - **Never edit workflow YAML to control execution.** Step modes (`skip`/`mock`/`live`) live in `.overwire/modes/<workflow>.yml`.
-- **Mock is the default and needs no Docker.** Mocked `run:` steps synthesize success with **empty outputs** — write expressions that tolerate that (`fromJSON(needs.x.outputs.y || '[]')`). Mocked `uses:` steps return their mock contract's declared outputs.
+- **Mock is the default and needs no Docker.** Mocked `run:` steps synthesize success with **empty outputs** — write expressions that tolerate that (`fromJSON(needs.x.outputs.y || '[]')`). Mocked `uses:` steps return their mock contract's declared outputs, and a contract's `artifacts:` block (files with inline `content:`, a `fromFile:` fixture under `.overwire/mocks/`, or neither for an empty file) registers real files in the run's artifact store — downstream `actions/download-artifact` steps restore them, and a mocked upload-artifact step synthesizes its `artifact-id`/`artifact-url`/`artifact-digest` outputs.
 - **Live mode** needs a Docker-API-compatible container engine; check with `overwire doctor --json`.
 - **Chains run by file path**: `overwire chain .overwire/chains/<name>.yml --config-root .overwire`. There is no `chain run <name>` form; `chain list`/`show` inspect past sessions.
 - **Secrets**: declare names in `.overwire/secrets.yml`; never commit values. Logs redact secrets by default.
