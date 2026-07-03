@@ -46,6 +46,4 @@ A complete worked example: https://github.com/overwire/demo (four fictional repo
 ## Reference
 
 - Full docs: https://docs.overwire.io (machine index: https://docs.overwire.io/llms.txt)
-- The CLI is free end to end — no command or flag is license-gated. Pro covers desktop GUI surfaces only (multi-repo workspaces, watch mode toggle, run comparison, expression debugger, selective re-runs, PR views). `overwire license status --json` reports the tier.
-
-Overwire is not affiliated with, endorsed by, or sponsored by GitHub, Inc., Microsoft Corporation, or Docker, Inc. GitHub and GitHub Actions are trademarks of GitHub, Inc.
+- The CLI is free end to end — no command or flag is license-gated. Pro covers desktop GUI surfaces only (multi-repo workspaces, governance simulation, and PR views). `overwire license status --json` reports the tier.
