@@ -38,6 +38,33 @@ Exit codes: 0 success or correctly-skipped; 1 run failure, or validate/lint find
 - **Chains run by file path**: `overwire chain .overwire/chains/<name>.yml --config-root .overwire`. There is no `chain run <name>` form; `chain list`/`show` inspect past sessions.
 - **Secrets**: declare names in `.overwire/secrets.yml`; never commit values. Logs redact secrets by default.
 
+## File formats — the two you author most
+
+A mock contract (`.overwire/mocks/<name>.yml`) declares what a mocked `uses:` step returns; `fromFile:` fixtures resolve relative to `.overwire/mocks/`:
+
+```yaml
+# yaml-language-server: $schema=https://docs.overwire.io/schemas/mock-contract.schema.json
+uses: acme/sbom-scanner@v2
+outputs:
+  report-path: reports/sbom.json
+artifacts:
+  - name: sbom
+    files:
+      - path: sbom.json
+        fromFile: fixtures/sbom.json
+```
+
+A modes file (`.overwire/modes/<workflow>.yml`) sets the workflow's default mode plus per-step overrides keyed `<jobId>.<stepIndex>`:
+
+```yaml
+# yaml-language-server: $schema=https://docs.overwire.io/schemas/modes.schema.json
+defaultMode: mock
+steps:
+  build.1: live
+```
+
+`overwire validate` does not currently check these two formats, and a malformed modes file is silently ignored at run time — so treat the per-step `mode` values in the `run:result` envelope as the ground truth for what actually applied.
+
 ## Simulating platform state
 
 Org controls are files you can author directly: repo rulesets (`rulesets.json`, GitHub's native export format), org rulesets cascading from a workspace root (`orgs/<org>/rulesets.json`), staged PRs (`pull-requests.yml`), external checks (`statuses.yml`), custom properties, protected environments (`environments/<name>/protection.yml`), declarative API mocks (`api-mocks.yml`), and saved event payloads (`payloads/<event>.json`). `overwire status --json` reports merge prediction for staged PRs against the rules.
