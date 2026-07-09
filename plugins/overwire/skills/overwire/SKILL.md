@@ -1,5 +1,4 @@
 ---
-name: overwire
 description: Use when working with GitHub Actions workflow files locally via Overwire (the local workflow workbench) — running or mocking workflows without pushing, authoring .overwire/ scenario files (modes, mock contracts, payloads, PR scenarios, rulesets, environments, chains), validating generated workflows, or reading Overwire run results. Triggers on .overwire/ directories, requests to "test this workflow locally", "mock this action", "simulate this PR/ruleset/environment", or any overwire CLI invocation.
 ---
 

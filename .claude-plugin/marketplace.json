@@ -1,4 +1,5 @@
 {
+  "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
   "name": "overwire",
   "owner": {
     "name": "Overwire"
@@ -14,6 +15,7 @@
       "description": "Run, mock, and debug GitHub Actions workflow files locally with the Overwire CLI: scaffold scenarios, validate before running, parse structured run results, and simulate org controls.",
       "author": { "name": "Overwire" },
       "homepage": "https://docs.overwire.io/automation/ai-agents/",
+      "repository": "https://github.com/overwire/agents",
       "license": "MIT",
       "keywords": ["workflows", "ci", "local-testing", "mocking"],
       "category": "developer-tools"
