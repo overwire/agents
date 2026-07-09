@@ -11,6 +11,7 @@ Overwire runs, mocks, and debugs GitHub Actions workflow files locally. Its enti
 
 - An Overwire project has a `.overwire/` directory (single repo) or a workspace root whose `.overwire/instances.yml` lists member repositories.
 - If `.overwire/AGENTS.md` exists, read it — it is the version-matched contract for this machine's install. Otherwise run `overwire agents` to print it.
+- If this skill and the output of `overwire agents` (or `.overwire/AGENTS.md`) disagree, trust the CLI output — it matches the installed version; this skill is a static condensation.
 - No `.overwire/` yet? `overwire init` scaffolds one (`init --workspace` for multi-repo; `init --agents` also writes the guide).
 
 ## Core loop
