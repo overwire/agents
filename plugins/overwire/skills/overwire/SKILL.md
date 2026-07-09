@@ -44,6 +44,29 @@ Org controls are files you can author directly: repo rulesets (`rulesets.json`, 
 
 A complete worked example: https://github.com/overwire/demo — `single-repo-demo/` for the free single-repo experience, `multi-repo-demo/` for a four-repo Pro workspace (verified command tour in `multi-repo-demo/CLI-TEST-COMMANDS.md`).
 
+## Machine-readable output
+
+On failure in `--json` mode the CLI prints one error envelope to stderr — branch on `error.kind`:
+
+```json
+{"error":{"kind":"path-not-found","label":"File or directory not found",
+  "message":"ENOENT: no such file or directory, open '…/.github/workflows/nope.yml'",
+  "guidance":"Check that the path exists and is spelled as expected."}}
+```
+
+The 12 `kind` values: `workflow-invalid`, `expression-invalid`, `action-unresolvable`, `mock-contract-invalid`, `config-invalid`, `docker-unavailable`, `docker-failed`, `runner-image-missing`, `path-not-found`, `cancelled`, `not-allowed`, `internal`.
+
+The last stdout line of `overwire run --json` is the `run:result` envelope (sample trimmed to one job):
+
+```json
+{"kind":"run:result","runId":"mre4rzw5-nubhcp","outcome":"success","exitCode":0,
+ "recordPath":"~/.cache/overwire/runs/local/demo/mre4rzw5-nubhcp",
+ "jobs":{"report":{"outcome":"success","steps":[
+   {"index":0,"name":"Build summary","mode":"mock","outcome":"success","conclusion":"success"}]}}}
+```
+
+Branch on `outcome` (`success`/`failure`/`cancelled`/`skipped`, or `aborted` when pre-run validation blocks the run) and `exitCode`; open `recordPath` for full logs and `events.jsonl`; failed steps add `error` and a `stderrTail`; `requiredChecks` and `apiRequests` appear only when relevant.
+
 ## Reference
 
 - Full docs: https://docs.overwire.io (machine index: https://docs.overwire.io/llms.txt)
