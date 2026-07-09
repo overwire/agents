@@ -2,7 +2,7 @@
   "$schema": "https://www.schemastore.org/claude-code-plugin-manifest.json",
   "name": "overwire",
   "description": "Drive Overwire, the local workflow workbench: run, mock, and debug GitHub Actions workflow files locally through the CLI and plain config files.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": { "name": "Overwire" },
   "homepage": "https://docs.overwire.io/automation/ai-agents/",
   "repository": "https://github.com/overwire/agents",

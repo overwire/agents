@@ -24,6 +24,16 @@ Two zero-install options work everywhere:
 
 See [Automate Overwire with AI agents](https://docs.overwire.io/automation/ai-agents/) for the full picture, and [github.com/overwire/demo](https://github.com/overwire/demo) for a complete worked example workspace.
 
+## Releasing
+
+Any change to SKILL.md, a command, or a manifest ships as a release:
+
+1. Bump `version` in **both** `.claude-plugin/marketplace.json` (`metadata.version`) and `plugins/overwire/.claude-plugin/plugin.json` — keep them identical.
+2. Add a section to [CHANGELOG.md](./CHANGELOG.md).
+3. Tag and push: `git tag v<version> && git push && git push --tags`.
+
+When CI's drift tripwire fires (the product's agent guide changed), re-verify the sentinel sections of SKILL.md against real CLI behavior, fix what drifted, record the new expectations with `node scripts/check-drift.mjs --update`, and release per the above.
+
 ## License
 
 [MIT](./LICENSE).
