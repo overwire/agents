@@ -27,7 +27,7 @@ Overwire runs, mocks, and debugs GitHub Actions workflow files locally. Its enti
 4. **Dig in only when needed**: the run record at the envelope's `recordPath` holds `run.json`, `events.jsonl`, and full logs; unmatched API calls produce ready-to-copy mock suggestions in `.overwire/state/api-mocks.suggested.yml`.
 5. **Seed mocks from reality**: `overwire seed-mocks <workflow> --out .overwire/mocks --from-run <run-id> --config-root .overwire` (without `--config-root` the run lookup uses a different project identity and finds nothing).
 
-Exit codes: 0 success/correctly-skipped, 1 run failure, 2 parse/config/validation/licensing errors.
+Exit codes: 0 success or correctly-skipped; 1 run failure, or validate/lint findings with errors; 2 parse/config hard errors; 130/143 when interrupted by a signal.
 
 ## Rules that prevent rework
 
