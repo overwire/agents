@@ -19,7 +19,7 @@ The `overwire` skill activates when an agent works with `.overwire/` projects or
 
 Two zero-install options work everywhere:
 
-- `overwire agents` prints the same guidance, version-matched to the installed CLI; `overwire init --agents` writes it into the project at `.overwire/AGENTS.md` where most agent harnesses will find it.
+- `overwire agents` prints the same guidance, version-matched to the installed CLI; `overwire init --agents` writes it to `.overwire/AGENTS.md` — reference it from your repo's own `AGENTS.md` or `CLAUDE.md` (e.g. "For running and mocking workflows locally, read `.overwire/AGENTS.md`").
 - The full documentation is published in agent-friendly form at [docs.overwire.io/llms.txt](https://docs.overwire.io/llms.txt), with JSON Schemas for every config format at [docs.overwire.io/schemas/](https://docs.overwire.io/schemas/index.json).
 
 See [Automate Overwire with AI agents](https://docs.overwire.io/automation/ai-agents/) for the full picture, and [github.com/overwire/demo](https://github.com/overwire/demo) for a complete worked example workspace.
