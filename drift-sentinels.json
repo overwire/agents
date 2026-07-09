@@ -1,0 +1,25 @@
+{
+  "sentinels": [
+    {
+      "name": "exit-codes",
+      "skillSection": "Core loop / exit codes",
+      "guidePattern": "Exit codes:.*?signals\\.",
+      "skillPattern": "Exit codes:.*?signal\\.",
+      "expectedGuideSha256": "cc3622cb64b6bccee87084a3fdade627b00a6b44f496561b3a4719cc34ff4e48"
+    },
+    {
+      "name": "pro-surfaces",
+      "skillSection": "Reference / free vs Pro",
+      "guidePattern": "The CLI is free end to end.*?PR views\\.",
+      "skillPattern": "Pro covers desktop GUI surfaces only \\(.*?PR views\\)\\.",
+      "expectedGuideSha256": "0280e2d433d7732e7fd7c6905bfd4d9571b6c11cd7ad7ed365ab4a7189949564"
+    },
+    {
+      "name": "demo-pointer",
+      "skillSection": "Simulating platform state / worked example",
+      "guidePattern": "A complete worked example lives at.*?reusable workflows\\)\\.",
+      "skillPattern": "A complete worked example:.*?CLI-TEST-COMMANDS\\.md`\\)\\.",
+      "expectedGuideSha256": "c1aeb011a1d58e727d3022258f47a3859845afad7966e8b52bd0c42f98d1527c"
+    }
+  ]
+}
