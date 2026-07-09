@@ -1,0 +1,5 @@
+# SKILL.md documents a template URL (…/schemas/<id>.schema.json); the <id>
+# placeholder is substituted by the reader. Depending on how the URL gets
+# extracted it may surface as the bare /schemas/ path, which has no index.
+https://docs\.overwire\.io/schemas/<id>.*
+https://docs\.overwire\.io/schemas/$

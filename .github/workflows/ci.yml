@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 9 * * 1' # weekly authoritative drift check (Mondays 09:00 UTC)
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Manifests parse as JSON
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/marketplace.json','utf8')); console.log('marketplace.json ok')"
+          node -e "JSON.parse(require('fs').readFileSync('plugins/overwire/.claude-plugin/plugin.json','utf8')); console.log('plugin.json ok')"
+
+      - name: Claude Code plugin validation (strict)
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate . --strict
+          claude plugin validate plugins/overwire --strict
+
+      - name: SKILL.md frontmatter
+        run: |
+          node -e "
+          const t = require('fs').readFileSync('plugins/overwire/skills/overwire/SKILL.md','utf8');
+          const m = t.match(/^---\n([\s\S]*?)\n---/);
+          if (!m) { console.error('SKILL.md: missing YAML frontmatter'); process.exit(1); }
+          if (!/^description:\s*\S/m.test(m[1])) { console.error('SKILL.md: frontmatter missing description:'); process.exit(1); }
+          console.log('frontmatter ok');
+          "
+
+      - name: Link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress './**/*.md'
+          fail: true
+
+      # The drift tripwire is advisory on push/PR so product-repo changes
+      # never hard-block unrelated work; authoritative on the weekly schedule.
+      # The product monorepo is private — without a PRODUCT_REPO_TOKEN secret
+      # (fine-grained PAT, contents:read on overwire/overwire) the script
+      # warns and passes instead of failing on a 404.
+      - name: Drift tripwire (advisory on push/PR)
+        if: github.event_name != 'schedule'
+        continue-on-error: true
+        env:
+          PRODUCT_REPO_TOKEN: ${{ secrets.PRODUCT_REPO_TOKEN }}
+        run: node scripts/check-drift.mjs
+
+      - name: Drift tripwire (authoritative weekly)
+        if: github.event_name == 'schedule'
+        env:
+          PRODUCT_REPO_TOKEN: ${{ secrets.PRODUCT_REPO_TOKEN }}
+        run: node scripts/check-drift.mjs
