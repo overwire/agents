@@ -41,7 +41,7 @@ Exit codes: 0 success or correctly-skipped; 1 run failure, or validate/lint find
 
 Org controls are files you can author directly: repo rulesets (`rulesets.json`, GitHub's native export format), org rulesets cascading from a workspace root (`orgs/<org>/rulesets.json`), staged PRs (`pull-requests.yml`), external checks (`statuses.yml`), custom properties, protected environments (`environments/<name>/protection.yml`), declarative API mocks (`api-mocks.yml`), and saved event payloads (`payloads/<event>.json`). `overwire status --json` reports merge prediction for staged PRs against the rules.
 
-A complete worked example: https://github.com/overwire/demo (four fictional repos, verified command tour in CLI-TEST-COMMANDS.md).
+A complete worked example: https://github.com/overwire/demo — `single-repo-demo/` for the free single-repo experience, `multi-repo-demo/` for a four-repo Pro workspace (verified command tour in `multi-repo-demo/CLI-TEST-COMMANDS.md`).
 
 ## Reference
 
